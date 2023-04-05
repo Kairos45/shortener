@@ -35,6 +35,9 @@ Prend un objet JSON en entrée contenant l'URL à réduire.
 }
 ```
 
+Validation réalisée sur l'URL: 
+* UrlValidator de la librairie : apache-commons-validator
+
 Retourne un objet JSON contenant la portion réduite.
 
 ```json
@@ -47,11 +50,15 @@ Retourne un objet JSON contenant la portion réduite.
 
 Prend la portion réduite d'une URL précédemment générée pour retourner l'URL complète d'origine.
 
+Validations faites:
+* la chaine doit être sur 8 caractères
+* pas d'espace dans la chaine
+* composé uniquement de caractères alphanumérique
 
 # Fonctionnement de la réduction de l'URL
 
 L'URL réduite doit respecter plusieurs critères :
-* Sans compter l’url du service (domaine), une URL raccourcie ne devrait pas compter plus de 10 caractères.
+* Sans compter l’URL du service (domaine), une URL raccourcie ne devrait pas compter plus de 10 caractères.
 * Deux URL complètes identiques doivent donner la même URL raccourcie
 
 J'ai fais le choix d'utiliser une fonction de hashage (implémentation murmur3_32 de la librairie Guava de Google) pour réduire l'URL complète et permettre ainsi dans le cas ou une même URL est passé 2 fois sans être persisté d'être équivalente.
@@ -63,6 +70,6 @@ Les 2 autres options que j'avais envisagée :
 
 # Pour aller plus loin
 * Sécuriser les différentes infos sensibles en clair dans le projet (password de la db...)
-* Gérer un cas de collision lorsque pour 2 URLs différentes, le hashage est le même (voir pour trouver une solution pereine).
+* Réfléchir à une solution de réduction plus pereine (car possibilité de collisions, et ce n'est pas géré dans le code).
 * Améliorer la partie base de données (créer une base dédiée, un user spécifique...)
 
