@@ -43,7 +43,7 @@ public class ShortenerController {
                     description = "Invalid URL provided",
                     content = { @Content(mediaType = "application/json",
                             schema = @Schema(implementation = ApiError.class)) }) })
-    @PutMapping("/shorten")
+    @PostMapping("/shorten")
     public ResponseEntity<?> shortenUrl(@Parameter(description = "the Long URL to shorten") @RequestBody final LongUrlDto longUrlDto) {
         String longUrl = longUrlDto.getLongUrl();
 

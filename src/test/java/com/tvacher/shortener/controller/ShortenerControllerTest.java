@@ -27,7 +27,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -60,7 +60,7 @@ public class ShortenerControllerTest {
 
         String body = new ObjectMapper().writeValueAsString(LongUrlDto.builder().longUrl("http://this-is-a-testing-url.com").build());
 
-        MvcResult result = mockMvc.perform(put("/shorten")
+        MvcResult result = mockMvc.perform(post("/shorten")
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(body))
                 .andExpect(status().isOk())
@@ -76,7 +76,7 @@ public class ShortenerControllerTest {
 
         String body = new ObjectMapper().writeValueAsString(LongUrlDto.builder().longUrl("this-is-a-bad-url").build());
 
-        mockMvc.perform(put("/shorten")
+        mockMvc.perform(post("/shorten")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(body))
                 .andExpect(status().isBadRequest())
