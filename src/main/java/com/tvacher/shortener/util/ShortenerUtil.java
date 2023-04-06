@@ -10,7 +10,7 @@ public class ShortenerUtil {
     private static final int SHORT_URL_PART_LENGTH = 8;
 
     /**
-     * Shorten the given long URL using { @link Hashing#murmur3_32_fixed() } to hash it
+     * Shorten the given long URL using {@link Hashing#murmur3_32_fixed()} to hash it
      * @param longUrl the given URL to shorten
      * @return 8 characters shorten URL part
      */
